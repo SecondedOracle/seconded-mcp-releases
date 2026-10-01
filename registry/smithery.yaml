@@ -1,0 +1,5 @@
+# Read by `smithery mcp publish` only when -n is omitted, and only for these two keys
+# (smithery-ai/cli src/lib/config-loader.ts). Configuration comes from the bundle manifest's
+# user_config, which is deliberately absent: wallet setup is local and takes no secrets.
+name: seconded-mcp
+target: local

@@ -1,0 +1,28 @@
+{
+  "author": {
+    "email": "support@secondedoracle.xyz",
+    "name": "SecondedOracle"
+  },
+  "bin": {
+    "seconded-mcp": "bin.cjs"
+  },
+  "description": "Verified local SECONDED stdio MCP binary launcher",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin.cjs",
+    "download.cjs",
+    "release-config.json",
+    "README.md"
+  ],
+  "homepage": "https://secondedoracle.xyz",
+  "license": "UNLICENSED",
+  "mcpName": "io.github.SecondedOracle/seconded-mcp",
+  "name": "@seconded/mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SecondedOracle/seconded-mcp-releases"
+  },
+  "version": "0.3.2"
+}
