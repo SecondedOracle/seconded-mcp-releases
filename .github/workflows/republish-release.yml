@@ -1,0 +1,52 @@
+name: Republish release as github-actions
+
+# Re-creates an existing release under the same tag with byte-identical assets,
+# so the release author is github-actions instead of a personal account.
+# Every asset is verified against the signed SHA-256SUMS before and after.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag, e.g. v0.3.3"
+        required: true
+      latest:
+        description: "Mark as the latest release"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  republish:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download current assets and notes
+        run: |
+          set -euo pipefail
+          mkdir assets
+          gh release download "$TAG" --dir assets --repo "$GITHUB_REPOSITORY"
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json name,body > meta.json
+          (cd assets && sha256sum -c SHA-256SUMS)
+          ssh-keygen -Y verify -f allowed_signers -I release@seconded -n seconded-release \
+            -s assets/SHA-256SUMS.sig < assets/SHA-256SUMS
+      - name: Re-create the release under the same tag
+        run: |
+          set -euo pipefail
+          NAME=$(jq -r .name meta.json); jq -r .body meta.json > notes.md
+          LATEST="${{ inputs.latest }}"
+          gh release delete "$TAG" --yes --repo "$GITHUB_REPOSITORY"
+          gh release create "$TAG" assets/* --title "$NAME" --notes-file notes.md \
+            --verify-tag --latest="$LATEST" --repo "$GITHUB_REPOSITORY"
+      - name: Read back and verify
+        run: |
+          set -euo pipefail
+          mkdir readback
+          gh release download "$TAG" --dir readback --repo "$GITHUB_REPOSITORY"
+          for f in assets/*; do cmp "$f" "readback/$(basename "$f")"; done
+          (cd readback && sha256sum -c SHA-256SUMS)
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json author --jq .author.login
