@@ -1,16 +1,16 @@
 {
-  "bundle": "assets/seconded-mcp_0.3.2.mcpb",
+  "bundle": "assets/seconded-mcp_0.3.3.mcpb",
   "configSchema": {
     "additionalProperties": false,
     "properties": {},
     "type": "object"
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
-  "fileSha256": "ca722fde6f1c495e631a86e0131d53a5427feb84f07168954f16790471ad4e7f",
-  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n7 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
-  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n7 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
+  "fileSha256": "1ee66e01c210da890fa5d621de7e207b1e884833d1f099ddff11c185624c5c52",
+  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n8 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large); Lending Check ($0.50 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
+  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n8 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large); Lending Check ($0.50 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
   "qualifiedName": "seconded/seconded-mcp",
-  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.2/seconded-mcp_0.3.2.mcpb",
+  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.3/seconded-mcp_0.3.3.mcpb",
   "tools": [
     {
       "annotations": {
@@ -157,7 +157,8 @@
               "agent_registry_check",
               "counterparty_check",
               "cross_chain_compare",
-              "scam_check"
+              "scam_check",
+              "lending_check"
             ],
             "type": "string"
           }
@@ -917,8 +918,74 @@
         "type": "object"
       },
       "name": "seconded_scam_check"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true,
+        "readOnlyHint": false
+      },
+      "description": "Use when: Reviewing one Morpho account and market at a block.\nSend: network, account, market_id.\nAnswer \u2192 do: no_debt/within_lltv_at_block: inspect at-block facts; liquidatable_at_block: show owner. NOT VERIFIED: pause. No loan actions; oracle accuracy and age unknown.\nCost: $0.50 small only. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "input": {
+            "additionalProperties": false,
+            "properties": {
+              "account": {
+                "pattern": "^0x[0-9a-fA-F]{40}$",
+                "type": "string"
+              },
+              "market_id": {
+                "pattern": "^0x[0-9a-fA-F]{64}$",
+                "type": "string"
+              },
+              "network": {
+                "enum": [
+                  "eip155:8453",
+                  "eip155:5042"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "network",
+              "account",
+              "market_id"
+            ],
+            "type": "object"
+          },
+          "max_price_usd": {
+            "description": "Optional price ceiling in USD; required only when value gate is on (off for new setups). Cannot raise the owner-configured per-check limit (default $2.50), enforced before signing.",
+            "type": "string"
+          },
+          "network": {
+            "description": "Chain you pay on. Omitted means base (Base mainnet). Other networks only when named: arc, robinhood, or testnets base_sepolia, arc_testnet, robinhood_testnet.",
+            "enum": [
+              "base_sepolia",
+              "arc_testnet",
+              "robinhood_testnet",
+              "base",
+              "arc",
+              "robinhood"
+            ],
+            "type": "string"
+          },
+          "wait_seconds": {
+            "maximum": 25,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "input"
+        ],
+        "type": "object"
+      },
+      "name": "seconded_lending_check"
     }
   ],
-  "version": "0.3.2",
+  "version": "0.3.3",
   "visibility": "public"
 }

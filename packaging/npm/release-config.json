@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.2",
+  "baseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.3",
   "publisherKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII8fWrnJvaLIX4obwzm/CnbVDdQKoQZ2ExqGeVzkgaxD",
-  "version": "0.3.2"
+  "version": "0.3.3"
 }

@@ -197,10 +197,50 @@ The publisher is SecondedOracle and support is support@secondedoracle.xyz.
 Use the verified installer or wrapper described in [the release runbook](release/mcp-v1.md).
 Keep the previous signed release and the complete private profile for rollback.
 
-Paid checks use POST /v1/x402/checks. A pending payment retains the exact request
+Paid checks use POST /v1/x402/checks (or legacy POST /v1/checks for supported operations; Cross-Chain Compare requires the standard door). A pending payment retains the exact request
 and credential for same-credential recovery; never sign a replacement to retry.
 The original /v1/checks door is operator rollback only until later separately
 approved mainnet canaries pass. Installation and wallet setup do not pay for checks.
+
+### Payment Signing vs Generic Financial Execution
+
+The dedicated check wallet and its EIP-3009 `TransferWithAuthorization` signatures are strictly bounded to paying SECONDED check verification fees ($0.25 to $2.50). 
+- Signing a check fee payment does **NOT** authorize generic financial execution, transaction broadcasting, token allowances, or smart contract interactions.
+- The client possesses a standard secp256k1 EOA key whose operations within SECONDED are strictly limited by client policy and tool dispatch to EIP-3009 fee authorizations ($0.25–$2.50) to configured payees. The client exposes no methods for arbitrary transaction signing, trade execution, or portfolio management. Because an ordinary EOA private key is not cryptographically restricted on-chain if exported or accessed outside the client, users should fund only small amounts ($5–$10) in a dedicated hot wallet isolated from portfolio funds.
+- Chat agents are confined to tightening spending limits or freezing payments; all limit raises, unfreezes, switch operations, and key exports require the owner's direct presence at a controlling terminal.
+
+### Production Payment Rails vs Subject Testnets
+
+Payment rails collect fees on three designated production chains:
+- **Base mainnet (`eip155:8453`)**: USDC (`base`, default)
+- **Arc mainnet (`eip155:5042`)**: USDC (`arc`)
+- **Robinhood Chain mainnet (`eip155:4663`)**: USDG (`robinhood`)
+
+Subject networks (where tokens, transactions, or counterparties reside) include mainnets and supported testnets (such as Base Sepolia `eip155:84532` for Token Check). These are completely independent from the outer payment rail used to fund the check.
+
+### Same-Check-ID Timeout Recovery Contract
+
+When network dropouts or timeouts occur while a payment is pending:
+1. The client marks `recovery_required: true` and preserves the existing local check handle; a standard-door server admission ID may not yet be known.
+2. The user or agent must **never sign a replacement payment** or create a duplicate check.
+3. Call `seconded_receipt` with that local handle in `check_id`. For standard x402 door checks (`POST /v1/x402/checks`), the client re-POSTs the exact retained request body and payment signature without generating a new signature (`client/standard.go:298-307`). (Legacy original-door and archived checks use GET `/v1/checks/{check_id}` with an off-chain `OwnershipProof`). The local recovery handle can differ from the signed server check ID. Fetching `running`, `settling`, `delayed`, `unavailable`, `refund_owed` or a live refusal retains the recovery-required purchase lock. Only a verified, consistent resolution durably saved to the ledger can clear it; new purchases also require `resolved` recovery state and `new_purchase_allowed`. Archival follows verified resolution and does not itself grant that permission. Follow returned pause/retry guidance and backoff from `hints.poll_after` and `Retry-After`.
+
+## Lending (0.4.0 Source Candidate — Morpho Blue)
+
+> [!WARNING]
+> **RELEASE HELD:** This offline 0.4.0 source candidate enables Lending through the normal registry and `seconded_lending_check`. It is not published or deployed. Root must qualify actual model, RPC, facilitator and settlement costs on every payment rail before merging or deploying this revision; independent review and a fresh execution grant remain required.
+> Base/Arc paired subject checks passed at captured blocks 52062874/23822304. These historical facts are not current health evidence; Robinhood remains disabled as a Lending subject.
+
+- **Exact Input**: `network`, `account`, and `market_id` only, with no extra fields. The account is a `0x`-prefixed 40-hex address and the market ID is `0x` plus 64 hex characters. Original input spelling binds the request; reader identities normalize lowercase.
+- **Subject Chains**: Base (`eip155:8453`) and Arc (`eip155:5042`) only. Robinhood (`eip155:4663`) is disabled as a Lending subject.
+- **Read-Only Scope**: Observes one existing account position in one Morpho Blue market at a pinned block. No proposed before/after simulation, approval analysis, borrowing, repayment, collateral movement, liquidation execution, staking, rebalancing, or yield optimization.
+- **Observed States**: `no_debt`, `within_lltv_at_block`, and `liquidatable_at_block` describe the observed position. Unknown, unavailable, inconsistent, stale, or declined evidence yields no delivered answer or settlement intent (`cannot_verify` is the abstention option). These are distinct from API/MCP transport and recovery statuses.
+- **Evidence Contract**: `receipt.envelope.answer.lending_observations` contains `sheet` and `evidence_sha256`. The sheet carries input, facts, source, and coverage; atomic quantities, shares, scales, and rates use exact decimal strings. Source block numbers/timestamps and token decimals remain bounded integers. Input, pinned block number/hash, evidence digest, and signed `outcome_at` bind the result; the complete sheet is capped at 8192 bytes.
+- **Limits**: Oracle accuracy and independent feed age remain unknown. Evidence freshness is bounded to 120 seconds at the signed outcome time. An at-block relationship is conditional on the protocol oracle, not future safety, financial advice, or authority to take a loan action.
+- **Fees & Wallets**: Subject chain and fee rail are independent. Existing Base USDC, Arc USDC, and Robinhood USDG fee rails and client check wallet policy remain unchanged; no new custody, key migration, or wallet provisioning.
+- **Proposed Price**: Small $0.50 on all three existing fee rails is the recommended reversible review candidate, pending final price/financial approval and measured provider, reader, invoice, and settlement cost qualification; no Medium/Large tier and no current sale. No live canary, activation, or production authority is granted here.
+- **Source Contract**: See [`LENDING` catalog/input schema](../server/checks/products.py), [`LendingInput` / `LendingObservations` / `Answer` OpenAPI components](openapi.json), and [`LendingCheck` evidence validation](../server/checks/lending_check.py). These are candidate source contracts. Keep published 0.3.2 install examples until 0.4.0 publication; do not execute paid examples before the release gates pass.
+
 
 ## Owner review checklist
 
@@ -213,3 +253,4 @@ approved mainnet canaries pass. Installation and wallet setup do not pay for che
 - Keep keys, payment headers and recovery records out of chat and public logs.
 - Restore an inaccessible OS store rather than creating a replacement wallet.
 - Decline any request to automate a terminal confirmation.
+

@@ -2,15 +2,15 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "_meta": {
     "io.modelcontextprotocol.registry/publisher-provided": {
-      "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n7 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest."
+      "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n8 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.25 small); Token Check ($0.25 small); Agent Registry Check ($0.25 small); Counterparty Address Check ($0.25 small); Cross-Chain Compare ($0.25 small); Scam Check ($0.25 small, $1.50 medium, $2.50 large); Lending Check ($0.50 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest."
     }
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
   "name": "io.github.SecondedOracle/seconded-mcp",
   "packages": [
     {
-      "fileSha256": "ca722fde6f1c495e631a86e0131d53a5427feb84f07168954f16790471ad4e7f",
-      "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.2/seconded-mcp_0.3.2.mcpb",
+      "fileSha256": "1ee66e01c210da890fa5d621de7e207b1e884833d1f099ddff11c185624c5c52",
+      "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.3.3/seconded-mcp_0.3.3.mcpb",
       "registryType": "mcpb",
       "transport": {
         "type": "stdio"
@@ -18,5 +18,5 @@
     }
   ],
   "title": "SECONDED",
-  "version": "0.3.2"
+  "version": "0.3.3"
 }
