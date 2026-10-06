@@ -3,10 +3,10 @@
 ```text
 Install the SECONDED stdio MCP client for me.
 Release binary URL for my OS/architecture: <RELEASE_BINARY_HTTPS_URL>
-Signed checksums URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/SHA-256SUMS
-Signature URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/SHA-256SUMS.sig
+Signed checksums URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/SHA-256SUMS
+Signature URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/SHA-256SUMS.sig
 Independently trusted publisher SSH Ed25519 public key: <RELEASE_PUBLIC_KEY>
-Version: 0.4.0
+Version: 0.4.1
 Host: <claude-desktop|claude-code|cursor|codex|gemini|generic> (use generic for Hermes)
 Network I will pay on: base (Base mainnet) unless I name arc or robinhood. Use a testnet (base_sepolia, arc_testnet or robinhood_testnet) only if I ask for one.
 Optional isolated profile: <ABSOLUTE_PRIVATE_PROFILE_DIRECTORY>

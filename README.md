@@ -1,4 +1,4 @@
-# SECONDED MCP client 0.4.0
+# SECONDED MCP client 0.4.1
 
 The oracle for agents. Verify trades, tokens and messages before your agent acts.
 
@@ -6,7 +6,7 @@ SECONDED is the oracle for agents. Before your agent acts, it checks the real co
 
 Release-only repository for `seconded-mcp`, the local stdio MCP client for SECONDED checks.
 It holds no source code. Every file here was produced by `ops/release/release.py stage` from
-the archived inputs of source commit `d163e143dba442df852f452a0ce32612da6684ad`, with the selected release version,
+the archived inputs of source commit `b8cfd7d1375d4f3a65087410a4a600e081e715bc`, with the selected release version,
 public publisher identity and signatures. `build-info.json` records one SHA-256 for the complete
 source/input archive and individual SHA-256 hashes for the fixed release templates; packaging
 and staging use that snapshot. To reconstruct the full input set, recreate the archive from the
@@ -15,18 +15,18 @@ private archive, then verify the archive digest and the template hashes.
 
 ## Downloads
 
-Assets are attached to the [v0.4.0 release](https://github.com/SecondedOracle/seconded-mcp-releases/releases/tag/v0.4.0).
-Base URL: `https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/`
+Assets are attached to the [v0.4.1 release](https://github.com/SecondedOracle/seconded-mcp-releases/releases/tag/v0.4.1).
+Base URL: `https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/`
 
 | File | SHA-256 |
 | --- | --- |
-| [`seconded-mcp_darwin_arm64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_darwin_arm64) | `eb6d3a843537e80dac9b8be9f730ee977ac4894797711ab8a07f3cd0adaa2ca3` |
-| [`seconded-mcp_darwin_amd64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_darwin_amd64) | `59203b26e3519f7880f17d3cdf288a12e82a041e33c15d21369daffce2f55e93` |
-| [`seconded-mcp_linux_amd64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_linux_amd64) | `8d9fe1fda1e67eb663d8efe8880821d0b1245b37d68d40c0f21b1154ae6ed738` |
-| [`seconded-mcp_linux_arm64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_linux_arm64) | `8b0a7e87d5941264e8808933db79b7d74d7222d46454bc5826a28e08fa85f253` |
-| [`seconded-mcp_windows_amd64.exe`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_windows_amd64.exe) | `e1275f3bc15603ce5b3e21ae17a8abfd391babc90ab354780cfa1d39152e3c8f` |
-| [`seconded-mcp_0.4.0.mcpb`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_0.4.0.mcpb) | `2ec637f5a1a39e899f830ba8c9867403d6cd558413a57f931162d1cfb9e2b839` |
-| [`build-info.json`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/build-info.json) | `ab4e2a817b85e706b7ad42fa53074dd983289f673dce100f376f2cf771860cb1` |
+| [`seconded-mcp_darwin_arm64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_darwin_arm64) | `b10805aa816281907cc1ea24e2ce89a2c1237d959bce3571fdd731848cbc3a57` |
+| [`seconded-mcp_darwin_amd64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_darwin_amd64) | `4459bd46829f82b8ad4db664099d11e806a509352928d875cbf37f729e0b87c2` |
+| [`seconded-mcp_linux_amd64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_linux_amd64) | `46b84613bb8e54db1f9510eb2eefbf3476053e7fb35b5b1b45048d2ff8d1b02a` |
+| [`seconded-mcp_linux_arm64`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_linux_arm64) | `e7fdb3b4c1dccd790af8aa2e84758bce840373a27c66204a00cfa7a7cd2dbe8f` |
+| [`seconded-mcp_windows_amd64.exe`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_windows_amd64.exe) | `714d8dbf3f0c71710fb5ad38534d069e39a3c54495f158268e6bf064925c50ec` |
+| [`seconded-mcp_0.4.1.mcpb`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_0.4.1.mcpb) | `199bbbe6de0e4e79c9fbf701f413bfb06af9b3462fca79cfe1c647a3fe1c7806` |
+| [`build-info.json`](https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/build-info.json) | `984e5dbdb321486d2c859944491fcdbc3f89e7dc1fbba4384ae1f76445021638` |
 
 `SHA-256SUMS` lists the same hashes. `SHA-256SUMS.sig` is the publisher's SSH
 signature over that file. Obtain the publisher key through SECONDED's independently
@@ -60,10 +60,10 @@ Cursor, Codex or Hermes:
 ```text
 Install the SECONDED stdio MCP client for me.
 Release binary URL for my OS/architecture: <RELEASE_BINARY_HTTPS_URL>
-Signed checksums URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/SHA-256SUMS
-Signature URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/SHA-256SUMS.sig
+Signed checksums URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/SHA-256SUMS
+Signature URL: https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/SHA-256SUMS.sig
 Independently trusted publisher SSH Ed25519 public key: <RELEASE_PUBLIC_KEY>
-Version: 0.4.0
+Version: 0.4.1
 Host: <claude-desktop|claude-code|cursor|codex|gemini|generic> (use generic for Hermes)
 Network I will pay on: base (Base mainnet) unless I name arc or robinhood. Use a testnet (base_sepolia, arc_testnet or robinhood_testnet) only if I ask for one.
 Optional isolated profile: <ABSOLUTE_PRIVATE_PROFILE_DIRECTORY>

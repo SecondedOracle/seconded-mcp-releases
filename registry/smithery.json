@@ -1,16 +1,16 @@
 {
-  "bundle": "assets/seconded-mcp_0.4.0.mcpb",
+  "bundle": "assets/seconded-mcp_0.4.1.mcpb",
   "configSchema": {
     "additionalProperties": false,
     "properties": {},
     "type": "object"
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
-  "fileSha256": "2ec637f5a1a39e899f830ba8c9867403d6cd558413a57f931162d1cfb9e2b839",
+  "fileSha256": "199bbbe6de0e4e79c9fbf701f413bfb06af9b3462fca79cfe1c647a3fe1c7806",
   "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
   "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
   "qualifiedName": "seconded/seconded-mcp",
-  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_0.4.0.mcpb",
+  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_0.4.1.mcpb",
   "tools": [
     {
       "annotations": {
@@ -1785,6 +1785,6 @@
       "name": "seconded_route_check"
     }
   ],
-  "version": "0.4.0",
+  "version": "0.4.1",
   "visibility": "public"
 }

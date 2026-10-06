@@ -9,8 +9,8 @@
   "name": "io.github.SecondedOracle/seconded-mcp",
   "packages": [
     {
-      "fileSha256": "2ec637f5a1a39e899f830ba8c9867403d6cd558413a57f931162d1cfb9e2b839",
-      "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.0/seconded-mcp_0.4.0.mcpb",
+      "fileSha256": "199bbbe6de0e4e79c9fbf701f413bfb06af9b3462fca79cfe1c647a3fe1c7806",
+      "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_0.4.1.mcpb",
       "registryType": "mcpb",
       "transport": {
         "type": "stdio"
@@ -18,5 +18,5 @@
     }
   ],
   "title": "SECONDED",
-  "version": "0.4.0"
+  "version": "0.4.1"
 }
