@@ -31,4 +31,4 @@ Never log, share, put in URLs or proxy-capture payment headers, SIWX signatures 
 > proxy-capture payment headers or recovery records; treat them like passwords. The original door (`/v1/checks`) binds
 > your signature to the quote and does not have this gap.
 
-New small-tier checks cost $0.25 (250000 atomic USDC/USDG) for all five available products on both payment doors. Medium costs $1.50 and large costs $2.50 where offered. Existing stored offers and quotes retain their accepted price until expiry; a pricing update does not reprice them.
+Small-tier lookup checks cost $0.10 ($0.15 on Robinhood), while Trade, Agent Registry, and Lending Check cost $0.25 on both payment doors. Medium costs $1.50 and large costs $2.50 where offered. Existing stored offers and quotes retain their accepted price until expiry; a pricing update does not reprice them.

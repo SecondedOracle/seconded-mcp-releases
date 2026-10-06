@@ -228,7 +228,7 @@ When network dropouts or timeouts occur while a payment is pending:
 ## Lending (0.4.0 Source Candidate — Morpho Blue)
 
 > [!WARNING]
-> **RELEASE HELD:** This offline 0.4.0 source candidate enables Lending through the normal registry and `seconded_lending_check`. It is not published or deployed. Root must qualify actual model, RPC, facilitator and settlement costs on every payment rail before merging or deploying this revision; independent review and a fresh execution grant remain required.
+> **<!-- catalog:status:lending_check -->AVAILABLE<!-- /catalog -->:** Lending is offered through the normal registry and `seconded_lending_check`. This source status does not assert that a package has been published or a server deployed; verify the target deployment separately.
 > Base/Arc paired subject checks passed at captured blocks 52062874/23822304. These historical facts are not current health evidence; Robinhood remains disabled as a Lending subject.
 
 - **Exact Input**: `network`, `account`, and `market_id` only, with no extra fields. The account is a `0x`-prefixed 40-hex address and the market ID is `0x` plus 64 hex characters. Original input spelling binds the request; reader identities normalize lowercase.
@@ -238,7 +238,7 @@ When network dropouts or timeouts occur while a payment is pending:
 - **Evidence Contract**: `receipt.envelope.answer.lending_observations` contains `sheet` and `evidence_sha256`. The sheet carries input, facts, source, and coverage; atomic quantities, shares, scales, and rates use exact decimal strings. Source block numbers/timestamps and token decimals remain bounded integers. Input, pinned block number/hash, evidence digest, and signed `outcome_at` bind the result; the complete sheet is capped at 8192 bytes.
 - **Limits**: Oracle accuracy and independent feed age remain unknown. Evidence freshness is bounded to 120 seconds at the signed outcome time. An at-block relationship is conditional on the protocol oracle, not future safety, financial advice, or authority to take a loan action.
 - **Fees & Wallets**: Subject chain and fee rail are independent. Existing Base USDC, Arc USDC, and Robinhood USDG fee rails and client check wallet policy remain unchanged; no new custody, key migration, or wallet provisioning.
-- **Proposed Price**: Small $0.50 on all three existing fee rails is the recommended reversible review candidate, pending final price/financial approval and measured provider, reader, invoice, and settlement cost qualification; no Medium/Large tier and no current sale. No live canary, activation, or production authority is granted here.
+- **Price and status**: Small <!-- catalog:price:lending_check:small -->$0.25<!-- /catalog -->; <!-- catalog:status:lending_check -->AVAILABLE<!-- /catalog -->. No Medium/Large tier. The current catalog supersedes the earlier held proposal; this documentation change does not deploy or authorize live payments.
 - **Source Contract**: See [`LENDING` catalog/input schema](../server/checks/products.py), [`LendingInput` / `LendingObservations` / `Answer` OpenAPI components](openapi.json), and [`LendingCheck` evidence validation](../server/checks/lending_check.py). These are candidate source contracts. Keep published 0.3.2 install examples until 0.4.0 publication; do not execute paid examples before the release gates pass.
 
 
