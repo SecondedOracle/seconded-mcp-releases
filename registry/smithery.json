@@ -1,16 +1,16 @@
 {
-  "bundle": "assets/seconded-mcp_0.4.1.mcpb",
+  "bundle": "assets/seconded-mcp_0.4.2.mcpb",
   "configSchema": {
     "additionalProperties": false,
     "properties": {},
     "type": "object"
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
-  "fileSha256": "199bbbe6de0e4e79c9fbf701f413bfb06af9b3462fca79cfe1c647a3fe1c7806",
-  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
-  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
+  "fileSha256": "b5964e98b0bb7fde9b94e427ed9c8e2949054dd3be383446b5edce17badfbc85",
+  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
+  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. If they don't agree, you don't pay. Every answer comes with a signed receipt.\n\n12 checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest.",
   "qualifiedName": "seconded/seconded-mcp",
-  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.1/seconded-mcp_0.4.1.mcpb",
+  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.2/seconded-mcp_0.4.2.mcpb",
   "tools": [
     {
       "annotations": {
@@ -32,7 +32,7 @@
         "openWorldHint": false,
         "readOnlyHint": false
       },
-      "description": "Change spending limits at the user's request, without a password. For 'set my daily limit to $20', pass {\"daily_usd\":20}. Chat can only tighten limits or freeze. Any increase, removal, safety-switch weakening or unfreeze requires the human terminal. These changes require the owner to run the terminal command returned on refusal. There is an absolute $25/day chat ceiling, even when the owner has authorized a higher daily limit in the terminal. Omitted fields stay unchanged. The hard $2.50 per-authorization cap always applies, even if per_check_usd is higher or none. Also changes value_gate, dedupe, loop_brake, alerts and frozen switches.",
+      "description": "Change spending limits at the user's request, without a password. For 'set my daily limit to $20', pass {\"daily_usd\":20}. Chat can only tighten limits or freeze. Any increase, removal, safety-switch weakening or unfreeze requires the human terminal. These changes require the owner to run the terminal command returned on refusal. On Macs with Touch ID, owner changes also require biometrics. Otherwise an installed administrator approval key requires an offline signature. Without either, the six-character TTY confirmation does not stop an agent with shell access. There is an absolute $25/day chat ceiling, even when the owner has authorized a higher daily limit in the terminal. Omitted fields stay unchanged. The hard $2.50 per-authorization cap always applies, even if per_check_usd is higher or none. Also changes value_gate, dedupe, loop_brake, alerts and frozen switches.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -554,7 +554,7 @@
         "openWorldHint": true,
         "readOnlyHint": false
       },
-      "description": "Use when: Before interacting with a token.\nSend: input with network, address.\nAnswer \u2192 do: issuer_controlled_expected: proceed; issuer can freeze/upgrade. no_checked_warning_signs: proceed with normal checks; warning_no_contract/warning_impersonation/warning_owner_control: STOP and show owner. NOT VERIFIED: pause or ask a human.\nCost: $0.10 ($0.15 on Robinhood) small only. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "description": "Use when: Before interacting with a token.\nSend: input with network, address.\nAnswer \u2192 do: issuer_controlled_expected: proceed; issuer can freeze/upgrade. no_checked_warning_signs: proceed with normal checks; any warning_*: STOP and show owner. NOT VERIFIED: pause or ask a human.\nCost: $0.10 ($0.15 on Robinhood) small only. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -706,7 +706,7 @@
         "openWorldHint": true,
         "readOnlyHint": false
       },
-      "description": "Use when: Before relying on an address.\nScreens the address against sanctions, scam and phishing lists and known deployments. A no-match is not proof of safety.\nSend: network and address.\nAnswer \u2192 do: listed_warning/deployment_mismatch: STOP; matches: continue checks; cannot_verify/NOT VERIFIED: pause.\nCost: $0.10 ($0.15 on Robinhood) small only. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "description": "Use when: Before relying on an address.\nChecks OFAC SDN addresses, configured deployments and pin lookalikes. No scam/phishing address lists. A no-match is not proof of safety.\nSend: network, address.\nAnswer \u2192 do: listed_warning/deployment_mismatch: STOP; cannot_verify/NOT VERIFIED: pause; matches: get scam/drainer screening before funds.\nCost: $0.10 ($0.15 on Robinhood) small only.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -1109,9 +1109,10 @@
             "description": "One input object with network and accepts; preserve supplied chosen_index and budget. Never input.input. Preserve offer fields and values. Client derives signing_context from top-level signing; never invent it.",
             "properties": {
               "accepts": {
-                "description": "Copy one to eight x402 offers exactly; preserve field names and values. Seller extension fields are refused.",
+                "description": "Copy one to eight x402 offers exactly; preserve field names and values. Metadata is preserved and digest-bound; unsupported extension semantics withhold proceed.",
                 "items": {
-                  "additionalProperties": false,
+                  "additionalProperties": true,
+                  "maxProperties": 32,
                   "oneOf": [
                     {
                       "required": [
@@ -1785,6 +1786,6 @@
       "name": "seconded_route_check"
     }
   ],
-  "version": "0.4.1",
+  "version": "0.4.2",
   "visibility": "public"
 }

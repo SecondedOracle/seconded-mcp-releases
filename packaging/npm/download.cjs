@@ -80,6 +80,21 @@ function targetName(platform = process.platform, arch = process.arch) {
   if (!target) throw Error('Unsupported OS/CPU');
   return 'seconded-mcp_' + target + (platform === 'win32' ? '.exe' : '');
 }
+function atomicWrite(destination, bytes, mode) {
+  // A killed writer leaves only an unreferenced temporary file. Other launchers
+  // always see the previous complete file or this complete, verified replacement.
+  const temporary = destination + '.' + crypto.randomBytes(16).toString('hex') + '.tmp';
+  const fd = fs.openSync(temporary, 'wx', mode);
+  try {
+    fs.writeFileSync(fd, bytes);
+    fs.fsyncSync(fd);
+  } finally { fs.closeSync(fd); }
+  fs.renameSync(temporary, destination);
+  if (process.platform !== 'win32') {
+    const directory = fs.openSync(path.dirname(destination), 'r');
+    try { fs.fsyncSync(directory); } finally { fs.closeSync(directory); }
+  }
+}
 async function install(config, destination, options = {}) {
   if (!/^[0-9]+\.[0-9]+\.[0-9]+(?:[-+][A-Za-z0-9.-]+)?$/.test(config.version)) throw Error('Invalid release version');
   const name = targetName(options.platform, options.arch);
@@ -91,21 +106,25 @@ async function install(config, destination, options = {}) {
   if (!expected) throw Error('Missing binary checksum');
   // Never trust a cached executable merely because it exists.
   const executable = path.join(destination, name);
+  fs.mkdirSync(destination, {recursive:true, mode:0o700});
+  const directory = fs.lstatSync(destination);
+  if (directory.isSymbolicLink() || !directory.isDirectory()) throw Error('Unsafe install directory');
+  let cached = false;
   try {
     const stat = fs.lstatSync(executable);
-    if (stat.isSymbolicLink() || !stat.isFile() || sha256(fs.readFileSync(executable)) !== expected) throw Error('Cached executable failed verification');
-    // The freshly verified sidecars must also cover the setup-visible copy.
-    fs.writeFileSync(path.join(destination,'SHA-256SUMS'), manifest, {mode:0o600});
-    fs.writeFileSync(path.join(destination,'SHA-256SUMS.sig'), signature, {mode:0o600});
-    return executable;
+    if (stat.isSymbolicLink() || !stat.isFile()) throw Error('Unsafe cached executable');
+    cached = sha256(fs.readFileSync(executable)) === expected;
   } catch (error) { if (error.code !== 'ENOENT') throw error; }
-  const binary = await fetchBytes(base + '/' + name, options.allowLoopback);
-  if (sha256(binary) !== expected) throw Error('Binary SHA-256 mismatch');
-  fs.mkdirSync(path.dirname(destination), {recursive:true, mode:0o700});
-  fs.mkdirSync(destination, {mode:0o700});
-  fs.writeFileSync(path.join(destination,'SHA-256SUMS'), manifest, {flag:'wx',mode:0o600});
-  fs.writeFileSync(path.join(destination,'SHA-256SUMS.sig'), signature, {flag:'wx',mode:0o600});
-  fs.writeFileSync(executable, binary, {flag:'wx',mode:0o755});
+  let binary;
+  if (!cached) {
+    binary = await fetchBytes(base + '/' + name, options.allowLoopback);
+    if (sha256(binary) !== expected) throw Error('Binary SHA-256 mismatch');
+  }
+  // Publish the executable last. Partial sidecar state is repaired on retry;
+  // every launch authenticates fresh sidecars before trusting any cached bytes.
+  atomicWrite(path.join(destination,'SHA-256SUMS'), manifest, 0o600);
+  atomicWrite(path.join(destination,'SHA-256SUMS.sig'), signature, 0o600);
+  if (binary) atomicWrite(executable, binary, 0o755);
   return executable;
 }
 module.exports = {install, verifySignature, parseManifest, targetName, sha256};
