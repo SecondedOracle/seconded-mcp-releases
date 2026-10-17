@@ -1,0 +1,173 @@
+name: Publish MCP Registry 0.4.2
+
+'on':
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-registry.yml
+      - registry/server.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: mcp-registry-0.4.2
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      EXPECTED_MANIFEST_SHA256: 827f360b3dc597bbd05f23f42ac9b66bfec9d39776eed3cabdc1e9651ecc5b87
+    steps:
+      - name: Require the organization bot on main
+        env:
+          REPOSITORY: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          REF: ${{ github.ref }}
+          ACTOR: ${{ github.actor }}
+          TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+          EVENT: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$REPOSITORY" = SecondedOracle/seconded-mcp-releases
+          test "$OWNER" = SecondedOracle
+          test "$REF" = refs/heads/main
+          test "$ACTOR" = 'seconded-publisher[bot]'
+          test "$TRIGGERING_ACTOR" = 'seconded-publisher[bot]'
+          case "$EVENT" in push|workflow_dispatch) ;; *) exit 1 ;; esac
+
+      - name: Check out the triggering commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check changed paths and committed bytes
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import re
+          import subprocess
+
+          if os.environ["EVENT"] == "push":
+              before = os.environ["BEFORE"]
+              if not re.fullmatch(r"[0-9a-f]{40}", before) or before == "0" * 40:
+                  raise SystemExit("A push must have an existing main parent")
+              changed = subprocess.check_output([
+                  "git", "diff", "--name-only", "-z", before,
+                  os.environ["GITHUB_SHA"], "--",
+              ]).split(b"\0")
+              allowed = {b".github/workflows/publish-registry.yml", b"registry/server.json"}
+              if set(changed) - {b""} - allowed:
+                  raise SystemExit("Push changes files outside the approved publish inputs")
+          PY
+          cmp registry/server.json <(git show "$GITHUB_SHA:registry/server.json")
+          printf '%s  registry/server.json\n' "$EXPECTED_MANIFEST_SHA256" | sha256sum -c -
+
+      - name: Check the manifest and published npm identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -q --fail --silent --show-error --proto '=https' \
+            --connect-timeout 10 --max-time 60 \
+            https://registry.npmjs.org/@seconded%2fmcp/0.4.2 \
+            -o "$RUNNER_TEMP/seconded-npm-0.4.2.json"
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          raw = Path("registry/server.json").read_bytes()
+          if hashlib.sha256(raw).hexdigest() != os.environ["EXPECTED_MANIFEST_SHA256"]:
+              raise SystemExit("Committed manifest digest mismatch")
+          server = json.loads(raw)
+          name = "io.github.SecondedOracle/seconded-mcp"
+          package = {
+              "registryType": "mcpb",
+              "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/"
+                            "releases/download/v0.4.2/seconded-mcp_0.4.2.mcpb",
+              "fileSha256": "b5964e98b0bb7fde9b94e427ed9c8e2949054dd3be383446b5edce17badfbc85",
+              "transport": {"type": "stdio"},
+          }
+          if server.get("name") != name or server.get("version") != "0.4.2":
+              raise SystemExit("Registry name/version mismatch")
+          # The approved committed JSON is MCPB-only. Never add npm or rewrite it here.
+          if server.get("packages") != [package]:
+              raise SystemExit("MCPB URL/digest/transport or package inventory mismatch")
+          npm = json.loads((Path(os.environ["RUNNER_TEMP"]) /
+                            "seconded-npm-0.4.2.json").read_bytes())
+          expected = {"name": "@seconded/mcp", "version": "0.4.2", "mcpName": name}
+          if any(npm.get(key) != value for key, value in expected.items()):
+              raise SystemExit("Published npm identifier/version/mcpName mismatch")
+          PY
+
+      - name: Verify the existing bundle and pinned publisher
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -d "$RUNNER_TEMP/registry-publisher-0.4.2"
+          cd "$RUNNER_TEMP/registry-publisher-0.4.2"
+          curl -q --fail --silent --show-error --location --proto '=https' \
+            --proto-redir '=https' --connect-timeout 10 --max-time 120 \
+            https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.2/seconded-mcp_0.4.2.mcpb \
+            -o seconded-mcp_0.4.2.mcpb
+          printf '%s  seconded-mcp_0.4.2.mcpb\n' \
+            b5964e98b0bb7fde9b94e427ed9c8e2949054dd3be383446b5edce17badfbc85 | sha256sum -c -
+          curl -q --fail --silent --show-error --location --proto '=https' \
+            --proto-redir '=https' --connect-timeout 10 --max-time 120 \
+            https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz \
+            -o publisher.tar.gz
+          printf '%s  publisher.tar.gz\n' \
+            a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc | sha256sum -c -
+          tar -xzf publisher.tar.gz mcp-publisher
+          printf '%s\n' "$RUNNER_TEMP/registry-publisher-0.4.2" >> "$GITHUB_PATH"
+
+      - name: Validate and require an unpublished version
+        shell: bash
+        run: |
+          set -euo pipefail
+          mcp-publisher validate registry/server.json
+          curl -q --fail --silent --show-error --proto '=https' \
+            --connect-timeout 10 --max-time 60 \
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.3.0 |
+            jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.3.0"'
+          code=$(curl -q --silent --show-error --proto '=https' \
+            --connect-timeout 10 --max-time 60 --output /dev/null --write-out '%{http_code}' \
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.2)
+          if [ "$code" != 404 ]; then
+            echo "Expected absent 0.4.2 (404), got $code; inspect the listing before retrying." >&2
+            exit 1
+          fi
+
+      - name: Authenticate and publish as the repository owner
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +x
+          mcp-publisher login github-oidc --registry=https://registry.modelcontextprotocol.io
+          printf '%s  registry/server.json\n' "$EXPECTED_MANIFEST_SHA256" | sha256sum -c -
+          mcp-publisher publish registry/server.json
+
+      - name: Read back the published version
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -q --fail --silent --show-error --proto '=https' \
+            --connect-timeout 10 --max-time 60 \
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.2 |
+            jq -e --slurpfile expected registry/server.json \
+              '.server.name == $expected[0].name and .server.version == $expected[0].version and
+               .server.packages == $expected[0].packages and
+               ._meta["io.modelcontextprotocol.registry/official"].status == "active"'
