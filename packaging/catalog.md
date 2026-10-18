@@ -1,8 +1,14 @@
 # SECONDED catalog
 
-Generated from a local offline API catalog capture; see ops/release/catalog/capture-provenance.json (historical capture catalog_sha256=9fd1e5238e17f95781d496439e78c242831a40962b78efb3afec911ae4841284 preserved; candidate manually revised). Prepared metadata only; no signed or published 0.3.1 release.
+Generated from a local offline API catalog capture; see ops/release/catalog/capture-provenance.json (historical capture catalog_sha256=9fd1e5238e17f95781d496439e78c242831a40962b78efb3afec911ae4841284 preserved; candidate manually revised). Prepared 0.4.3 metadata only; no signed or published 0.4.3 release.
 
 SECONDED exposes 12 paid verification checks and six MCP utility tools across five core job groups. It does not provide general transaction signing, trading execution, bridging, or automated portfolio actions. Payment signing for check fees is strictly bounded ($0.10 to $2.50) and never authorizes generic financial execution.
+
+Client 0.4.3 also lists `seconded_degen_check`, bringing discovery to 19 tools.
+Degen Check supports Pons V2 tokens on Robinhood Chain (`eip155:4663`), but its
+bundled status is `unavailable`; a visible tool does not establish enabled sales.
+The small-tier price is $0.10 when offered. A signed `models_disagree` answer can
+be charged; disagreement and stale results do not authorize an action.
 
 ---
 

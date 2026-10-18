@@ -1,6 +1,6 @@
 # SECONDED: checks before an agent acts
 
-Check EVM transactions and permits before signing, token contracts and agent registrations before trusting them, and suspicious messages before following their instructions. Select a product and exact input using `/v1/products`; preview price with `/v1/quote`. Two rival-lab models must agree. Interpret the answer label using the product's recommended action and signed coverage; a result covers only what was measured.
+Check EVM transactions and permits before signing, token contracts and agent registrations before trusting them, and suspicious messages before following their instructions. Select a product and exact input using `/v1/products`; preview price with `/v1/quote`. Standard checks require two rival-lab models to agree. Degen Check can also return a chargeable signed `models_disagree` answer; disagreement does not authorize an action. Interpret the answer label using the product's recommended action and signed coverage; a result covers only what was measured.
 
 An unpaid, refused, failed, pending or NOT VERIFIED result is not a pass and must not unblock the guarded action. Without a payer, stop and ask your owner. Never retry or improvise payment capability.
 
