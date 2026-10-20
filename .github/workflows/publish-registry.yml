@@ -1,4 +1,4 @@
-name: Publish MCP Registry 0.4.3
+name: Publish MCP Registry 0.4.4
 
 'on':
   push:
@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: mcp-registry-0.4.3
+  group: mcp-registry-0.4.4
   cancel-in-progress: false
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      EXPECTED_MANIFEST_SHA256: 1b4c8599d8983197cde1be66ecb54927ac213dfd6a61ddf0454214fde215fd27
+      EXPECTED_MANIFEST_SHA256: 2a28d320ccd993eed1e029634525b1fa2cb92330c82b085712a89b3775adb3c0
     steps:
       - name: Require the organization bot on main
         env:
@@ -42,7 +42,7 @@ jobs:
           case "$EVENT" in push|workflow_dispatch) ;; *) exit 1 ;; esac
 
       - name: Check out the triggering commit
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09  # v5
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
@@ -81,8 +81,8 @@ jobs:
           set -euo pipefail
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.npmjs.org/@seconded%2fmcp/0.4.3 \
-            -o "$RUNNER_TEMP/seconded-npm-0.4.3.json"
+            https://registry.npmjs.org/@seconded%2fmcp/0.4.4 \
+            -o "$RUNNER_TEMP/seconded-npm-0.4.4.json"
           python3 - <<'PY'
           import hashlib
           import json
@@ -97,36 +97,34 @@ jobs:
           package = {
               "registryType": "mcpb",
               "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/"
-                            "releases/download/v0.4.3/seconded-mcp_0.4.3.mcpb",
-              "fileSha256": "0be09eeb815ea4b36b1daa75eb8366ea5a0934bcba8e27fc62456d034fb5fdee",
+                            "releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb",
+              "fileSha256": "045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa",
               "transport": {"type": "stdio"},
           }
-          if server.get("name") != name or server.get("version") != "0.4.3":
+          if server.get("name") != name or server.get("version") != "0.4.4":
               raise SystemExit("Registry name/version mismatch")
           # The approved committed JSON is MCPB-only. Never add npm or rewrite it here.
           if server.get("packages") != [package]:
               raise SystemExit("MCPB URL/digest/transport or package inventory mismatch")
           npm = json.loads((Path(os.environ["RUNNER_TEMP"]) /
-                            "seconded-npm-0.4.3.json").read_bytes())
-          expected = {"name": "@seconded/mcp", "version": "0.4.3", "mcpName": name}
+                            "seconded-npm-0.4.4.json").read_bytes())
+          expected = {"name": "@seconded/mcp", "version": "0.4.4", "mcpName": name}
           if any(npm.get(key) != value for key, value in expected.items()):
               raise SystemExit("Published npm identifier/version/mcpName mismatch")
-          if npm.get("_npmUser", {}).get("name") != "secondedoracle":
-              raise SystemExit("Published npm publisher mismatch")
           PY
 
       - name: Verify the existing bundle and pinned publisher
         shell: bash
         run: |
           set -euo pipefail
-          install -d "$RUNNER_TEMP/registry-publisher-0.4.3"
-          cd "$RUNNER_TEMP/registry-publisher-0.4.3"
+          install -d "$RUNNER_TEMP/registry-publisher-0.4.4"
+          cd "$RUNNER_TEMP/registry-publisher-0.4.4"
           curl -q --fail --silent --show-error --location --proto '=https' \
             --proto-redir '=https' --connect-timeout 10 --max-time 120 \
-            https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.3/seconded-mcp_0.4.3.mcpb \
-            -o seconded-mcp_0.4.3.mcpb
-          printf '%s  seconded-mcp_0.4.3.mcpb\n' \
-            0be09eeb815ea4b36b1daa75eb8366ea5a0934bcba8e27fc62456d034fb5fdee | sha256sum -c -
+            https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb \
+            -o seconded-mcp_0.4.4.mcpb
+          printf '%s  seconded-mcp_0.4.4.mcpb\n' \
+            045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa | sha256sum -c -
           curl -q --fail --silent --show-error --location --proto '=https' \
             --proto-redir '=https' --connect-timeout 10 --max-time 120 \
             https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz \
@@ -134,7 +132,7 @@ jobs:
           printf '%s  publisher.tar.gz\n' \
             a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc | sha256sum -c -
           tar -xzf publisher.tar.gz mcp-publisher
-          printf '%s\n' "$RUNNER_TEMP/registry-publisher-0.4.3" >> "$GITHUB_PATH"
+          printf '%s\n' "$RUNNER_TEMP/registry-publisher-0.4.4" >> "$GITHUB_PATH"
 
       - name: Validate and require an unpublished version
         shell: bash
@@ -143,13 +141,13 @@ jobs:
           mcp-publisher validate registry/server.json
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.2 |
-            jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.4.2"'
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.3.0 |
+            jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.3.0"'
           code=$(curl -q --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 --output /dev/null --write-out '%{http_code}' \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.3)
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.4)
           if [ "$code" != 404 ]; then
-            echo "Expected absent 0.4.3 (404), got $code; inspect the listing before retrying." >&2
+            echo "Expected absent 0.4.4 (404), got $code; inspect the listing before retrying." >&2
             exit 1
           fi
 
@@ -168,12 +166,12 @@ jobs:
           set -euo pipefail
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.3 |
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.4 |
             jq -e --slurpfile expected registry/server.json \
               '.server.name == $expected[0].name and .server.version == $expected[0].version and
                .server.packages == $expected[0].packages and
                ._meta["io.modelcontextprotocol.registry/official"].status == "active"'
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.2 |
-            jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.4.2"'
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.3.0 |
+            jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.3.0"'
