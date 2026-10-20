@@ -1,16 +1,16 @@
 {
-  "bundle": "assets/seconded-mcp_0.4.3.mcpb",
+  "bundle": "assets/seconded-mcp_0.4.4.mcpb",
   "configSchema": {
     "additionalProperties": false,
     "properties": {},
     "type": "object"
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
-  "fileSha256": "0be09eeb815ea4b36b1daa75eb8366ea5a0934bcba8e27fc62456d034fb5fdee",
-  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge for agreement; Degen Check can also charge for a signed models_disagree answer.\n\n12 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Degen Check ($0.10 small) is supported by this client for Pons V2 tokens on Robinhood Chain. Its bundled status is unavailable; the server must enable sales before it can be purchased. A discovered tool is not proof of current availability.",
-  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge for agreement; Degen Check can also charge for a signed models_disagree answer.\n\n12 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Degen Check ($0.10 small) is supported by this client for Pons V2 tokens on Robinhood Chain. Its bundled status is unavailable; the server must enable sales before it can be purchased. A discovered tool is not proof of current availability.",
+  "fileSha256": "045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa",
+  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and six utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
+  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and six utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
   "qualifiedName": "seconded/seconded-mcp",
-  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.3/seconded-mcp_0.4.3.mcpb",
+  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb",
   "tools": [
     {
       "annotations": {
@@ -142,7 +142,7 @@
         "openWorldHint": true,
         "readOnlyHint": true
       },
-      "description": "Use when a price preview is requested or needed to decide affordability. Quotes price only; does not assess the action. A fully specified bounded check can be called directly.",
+      "description": "Use when a price preview is requested or needed to decide affordability. Quotes price only; does not assess the action. A fully specified bounded check can be called directly. For Asset Check use raw product token_check or stock_token_check, with input excluding kind.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -478,44 +478,87 @@
         "openWorldHint": true,
         "readOnlyHint": false
       },
-      "description": "Use when: Before trading a Robinhood or Coinbase Base stock token.\nSend: input with network (eip155:4663 or eip155:8453), address; ticker and intended_price_usd optional.\nAnswer \u2192 do: official_stock_token: continue checks; not_official_or_out_of_line: STOP and show owner. NOT VERIFIED: pause or ask a human.\nCost: $0.10 ($0.15 on Robinhood) S only; larger inputs refused. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "description": "Use when: checking token controls or stock-token identity. Send: kind=token|stock_token, network, address; optional fields follow that kind's schema. Answer \u2192 do: token warning_*: STOP; issuer_controlled_expected: issuer can freeze/upgrade. Stock identity is not a token-risk pass; review its original labels. NOT VERIFIED: pause. Cost: $0.10 small; $0.15 paid on Robinhood. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
           "input": {
-            "additionalProperties": false,
-            "properties": {
-              "address": {
-                "pattern": "^0x[0-9a-fA-F]{40}$",
-                "type": "string"
-              },
-              "intended_price_usd": {
-                "oneOf": [
-                  {
-                    "exclusiveMinimum": 0,
-                    "type": "number"
+            "oneOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "pattern": "^0x[0-9a-fA-F]{40}$",
+                    "type": "string"
                   },
-                  {
-                    "pattern": "^(0|[1-9][0-9]{0,11})(\\.[0-9]{1,18})?$",
+                  "intended_price_usd": {
+                    "oneOf": [
+                      {
+                        "exclusiveMinimum": 0,
+                        "type": "number"
+                      },
+                      {
+                        "pattern": "^(0|[1-9][0-9]{0,11})(\\.[0-9]{1,18})?$",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "kind": {
+                    "const": "stock_token",
+                    "type": "string"
+                  },
+                  "network": {
+                    "enum": [
+                      "eip155:4663",
+                      "eip155:8453"
+                    ],
+                    "type": "string"
+                  },
+                  "ticker": {
+                    "pattern": "^[A-Z0-9][A-Z0-9.]{0,15}c?$",
                     "type": "string"
                   }
-                ]
-              },
-              "network": {
-                "enum": [
-                  "eip155:4663",
-                  "eip155:8453"
+                },
+                "required": [
+                  "network",
+                  "address",
+                  "kind"
                 ],
-                "type": "string"
+                "type": "object"
               },
-              "ticker": {
-                "pattern": "^[A-Z0-9][A-Z0-9.]{0,15}c?$",
-                "type": "string"
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "pattern": "^0x[0-9a-fA-F]{40}$",
+                    "type": "string"
+                  },
+                  "context": {
+                    "maxLength": 2000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "kind": {
+                    "const": "token",
+                    "type": "string"
+                  },
+                  "network": {
+                    "enum": [
+                      "eip155:84532",
+                      "eip155:8453",
+                      "eip155:5042",
+                      "eip155:4663"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "network",
+                  "address",
+                  "kind"
+                ],
+                "type": "object"
               }
-            },
-            "required": [
-              "network",
-              "address"
             ],
             "type": "object"
           },
@@ -546,75 +589,7 @@
         ],
         "type": "object"
       },
-      "name": "seconded_stock_token_check"
-    },
-    {
-      "annotations": {
-        "destructiveHint": false,
-        "idempotentHint": false,
-        "openWorldHint": true,
-        "readOnlyHint": false
-      },
-      "description": "Check an official token (a stablecoin or tokenized asset) before an agent uses it. Use when: checking token identity and controls. Send: network and token address. Answer \u2192 do: review warnings; issuer_controlled_expected: issuer can freeze/upgrade; NOT VERIFIED: pause. Cost: $0.10 ($0.15 on Robinhood). New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
-      "inputSchema": {
-        "additionalProperties": false,
-        "properties": {
-          "input": {
-            "additionalProperties": false,
-            "properties": {
-              "address": {
-                "pattern": "^0x[0-9a-fA-F]{40}$",
-                "type": "string"
-              },
-              "context": {
-                "maxLength": 2000,
-                "minLength": 1,
-                "type": "string"
-              },
-              "network": {
-                "enum": [
-                  "eip155:84532",
-                  "eip155:8453",
-                  "eip155:5042",
-                  "eip155:4663"
-                ],
-                "type": "string"
-              }
-            },
-            "required": [
-              "network",
-              "address"
-            ],
-            "type": "object"
-          },
-          "max_price_usd": {
-            "description": "Optional price ceiling in USD; required only when value gate is on (off for new setups). Cannot raise the owner-configured per-check limit (default $2.50), enforced before signing.",
-            "type": "string"
-          },
-          "network": {
-            "description": "Chain you pay on. Omitted means base (Base mainnet). Other networks only when named: arc, robinhood, or testnets base_sepolia, arc_testnet, robinhood_testnet.",
-            "enum": [
-              "base_sepolia",
-              "arc_testnet",
-              "robinhood_testnet",
-              "base",
-              "arc",
-              "robinhood"
-            ],
-            "type": "string"
-          },
-          "wait_seconds": {
-            "maximum": 25,
-            "minimum": 0,
-            "type": "integer"
-          }
-        },
-        "required": [
-          "input"
-        ],
-        "type": "object"
-      },
-      "name": "seconded_token_check"
+      "name": "seconded_asset_check"
     },
     {
       "annotations": {
@@ -1531,7 +1506,7 @@
         "openWorldHint": true,
         "readOnlyHint": false
       },
-      "description": "Use when: Compare bounded shielded route quotes.\nSend: network, asset, amount.\nAnswer \u2192 do: proceed: review route; do_not_proceed: STOP; NOT VERIFIED: pause.\nCost: $0.25 small only.\nNo anonymity or legal-compliance guarantee. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "description": "Use when: Default privacy-sensitive amounts to the local comparator. Use the paid model check only with explicit opt-in; its paying wallet links to the check and stored result\u2014do not pay from a wallet to keep unlinked.\nSend: network, asset, amount.\nAnswer \u2192 do: proceed: review route; do_not_proceed: STOP; NOT VERIFIED: pause.\nCost: $0.25 small only.\nNo anonymity or legal-compliance guarantee. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -1793,7 +1768,7 @@
         "openWorldHint": true,
         "readOnlyHint": false
       },
-      "description": "Check a new Pons launch before you buy it. Use when: reviewing a Pons V2 token. Send: Robinhood Chain network and token address. Answer \u2192 do: review facts and both opinions; NOT VERIFIED: pause. Cost: $0.10 small only. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
+      "description": "Check a new Pons launch before you buy it. Use when: reviewing a Pons V2 token. Send: Robinhood Chain network and token address (Robinhood only). Answer \u2192 do: review facts and both opinions; models_disagree: review the signed disagreement; NOT VERIFIED: pause. Cost: $0.10 small only, including signed disagreement. New setups: $2.50 max per check, $25 a day; chat only tightens or freezes.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
@@ -1847,6 +1822,6 @@
       "name": "seconded_degen_check"
     }
   ],
-  "version": "0.4.3",
+  "version": "0.4.4",
   "visibility": "public"
 }

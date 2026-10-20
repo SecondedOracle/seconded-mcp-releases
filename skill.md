@@ -1,6 +1,6 @@
 # SECONDED: checks before an agent acts
 
-Check EVM transactions and permits before signing, token contracts and agent registrations before trusting them, and suspicious messages before following their instructions. Select a product and exact input using `/v1/products`; preview price with `/v1/quote`. Standard checks require two rival-lab models to agree. Degen Check can also return a chargeable signed `models_disagree` answer; disagreement does not authorize an action. Interpret the answer label using the product's recommended action and signed coverage; a result covers only what was measured.
+Check EVM transactions and permits before signing, token contracts and agent registrations before trusting them, and suspicious messages before following their instructions. Select a product and exact input using `/v1/products`; preview price with `/v1/quote`. Standard checks require two rival-lab models to agree. Degen Check costs $0.10 for a saved signed answer, including `models_disagree`; standard disagreements are signed and free; disagreement does not authorize an action. Interpret the answer label using the product's recommended action and signed coverage; a result covers only what was measured.
 
 An unpaid, refused, failed, pending or NOT VERIFIED result is not a pass and must not unblock the guarded action. Without a payer, stop and ask your owner. Never retry or improvise payment capability.
 
@@ -32,3 +32,5 @@ Never log, share, put in URLs or proxy-capture payment headers, SIWX signatures 
 > your signature to the quote and does not have this gap.
 
 Small-tier lookup checks cost $0.10 ($0.15 on Robinhood), while Trade, Agent Registry, and Lending Check cost $0.25 on both payment doors. Medium costs $1.50 and large costs $2.50 where offered. Existing stored offers and quotes retain their accepted price until expiry; a pricing update does not reprice them.
+
+The bundled snapshot lists 13 products through 12 check tools and six utilities. Asset Check uses `input.kind=token|stock_token`; quotes retain the raw product IDs and omit `kind`. `seconded_quote.network` selects `base`, `arc`, `robinhood`, `base_sepolia`, `arc_testnet` or `robinhood_testnet`; it is the payment rail, separate from the subject network. Bundled availability is not a live probe.

@@ -7,13 +7,15 @@ An SSH Ed25519 signed release manifest authenticates bytes; it is not a platform
 
 ## Operator accounts and trust
 
-Provision GitHub identity SecondedOracle with 2FA and repositories
-`seconded-mcp-releases` and `homebrew-tap`; npm organization `secondedoracle`
+Use the organization App identity `seconded-publisher[bot]` for GitHub repositories
+`seconded-mcp-releases` and `homebrew-tap`; npm account `secondedoracle`
 with package permission for `@seconded/mcp`; Smithery namespace
-`seconded`; and official MCP Registry GitHub device authentication for
+`seconded`; and GitHub Actions OIDC authentication for the official MCP Registry listing
 `io.github.SecondedOracle/seconded-mcp`. Confirm support@secondedoracle.xyz is
 monitored. Account login and publication are operator actions, never worker steps.
 No Apple or Microsoft signing account is required for this UNSIGNED release.
+Git author and committer must be `SECONDED <support@secondedoracle.xyz>`.
+Personal GitHub accounts, PATs and device login are not publication alternatives.
 
 Use an operator-controlled SSH Ed25519 release key. Keep its private half outside
 source, logs, package bundles and public repositories. Announce the public key and
@@ -30,21 +32,25 @@ separate credential authorization and privacy-steward follow-up before deploymen
    unfreezes and wallet switching, and legacy nil/above-$25/day freeze. Keep the
    original `/v1/checks` as operator rollback until all three mainnet canaries pass.
    Do not publish a release assembled from the old client behavior.
-2. Capture the live catalog without payment and regenerate metadata:
+2. Preserve historical live captures. Regenerate the prepared metadata from the
+   current bundled catalog and the native tool snapshot:
 
    ```sh
-   curl -fsS --proto '=https' --max-time 30 https://api.secondedoracle.xyz/v1/products -o ops/release/catalog/live-products.json
+   # Prepared snapshots are reviewed alongside client/products.json and client/tools-list.json.
+   # The 0.4.4 handoff records their hashes; do not overwrite historical captures.
    python3 ops/release/metadata.py
    python3 ops/release/metadata.py --check --check-client
    ```
 
-   The capture supplies tools, price tiers and networks. All five small checks
-   are $0.25. Trade medium is $1.50; Scam medium/large are $1.50/$2.50. Base and Arc
+   The prepared catalog supplies 13 product contracts through 12 check tools and
+   six utilities. Lookup checks cost $0.10 ($0.15 when paid on Robinhood); Degen
+   costs $0.10, including saved signed disagreement. Standard disagreement is
+   signed and free. Trade medium is $1.50; Scam medium/large are $1.50/$2.50. Base and Arc
    settle USDC; Robinhood Chain settles USDG. Metadata drift and client-schema
    drift must be resolved before building. Do not copy legacy catalog usage prose
    as v1 instructions: the standard door is the binding operator decision.
 3. Commit reviewed release inputs. Choose a strictly newer SemVer for an upgrade;
-   the 0.3.0 source templates are not approval to replace an enrolled 0.3.0 wallet.
+   source templates are not approval to replace an enrolled wallet or published version.
    Retain the complete private profile and previous signed release. Set the shell
    variables below to reviewed values; RELEASE_PUBLIC_KEY names the public key file,
    SIGNING_KEY names the operator-held private key and GOVULNDB an approved local
@@ -88,7 +94,7 @@ separate credential authorization and privacy-steward follow-up before deploymen
    Stage renders the npm publisher pin, version and URL, and a Homebrew formula
    with exact native-binary/manifest/signature hashes. It renders registry MCPB
    hashes from final bytes. Never publish the source key/hash placeholders.
-8. Run both leak scanners over the entire staged directory and an explicit final
+8. Run all three leak scanners over the entire staged directory and an explicit final
    npm tarball. Include the tap formula, installer, user docs, manifest/sidecars,
    binaries and extracted MCPB. Keep private reports outside the staged tree:
 
@@ -159,21 +165,25 @@ legacy nil/above-$25/day policies until that review. Limits cannot stop direct k
    $0.25 small check from the final MCP bytes on Base, Arc and Robinhood sequentially,
    at most $0.75 service spend plus separately approved gas. Stop on an unexpected
    status and recover the same credential. This task performs none of those payments.
-2. Under explicit public_release approval, create the release-only GitHub repo and
-   a version tag. Upload exactly the staged assets, installer/wrapper/docs, rendered
+2. Under explicit public_release approval, use `seconded-publisher[bot]` to update
+   the release-only GitHub repo and create the approved version tag. Upload exactly the staged assets, installer/wrapper/docs, rendered
    registry drafts, distribution checksums/signature and reviewed release notes.
    Download anew from GitHub and re-verify the independently trusted key, version,
    manifest signature and every asset hash. Public source archive upload is prohibited.
 3. Pack the rendered npm directory using `npm pack --ignore-scripts`, scan/extract
-   the tarball, then operator-publish `@seconded/mcp` at the exact VERSION.
+   the tarball, confirm `npm whoami` is `secondedoracle`, then publish
+   `@seconded/mcp` at the exact VERSION with the operator completing npm 2FA.
    Re-download the package and compare the four launcher/config bytes and pinned key.
-4. Commit the rendered Formula/seconded-mcp.rb to SecondedOracle/homebrew-tap.
+4. Use `seconded-publisher[bot]` to commit the rendered Formula/seconded-mcp.rb
+   to SecondedOracle/homebrew-tap only under its separate publication approval.
    Test both architectures on the relevant Mac/Linux hosts; verify resource hashes,
    signature verification, setup, upgrade and rollback. Do not claim native testing
    from Ruby syntax checks or a local dummy download alone.
-5. From the staged `registry` directory, operator-run `mcp-publisher validate`,
-   `mcp-publisher login github`, then `mcp-publisher publish`. Authenticate an account
-   authorized for SecondedOracle; verify the namespace authorization before publish.
+5. Update the reviewed Registry workflow and exact `registry/server.json` through
+   `seconded-publisher[bot]`. Both actor guards must require that bot. GitHub Actions
+   runs `mcp-publisher validate`, `mcp-publisher login github-oidc`, then
+   `mcp-publisher publish`. Review the final manifest/MCPB hashes before publication.
+   The old workflow-addition helper must not be reused to update an existing workflow.
    These commands use the pinned publisher CLI and final server.json. Read the
    registry entry back and compare identity, version, stdio transport, MCPB URL/hash.
 6. From the staged public tree, operator-run `smithery auth login`, then

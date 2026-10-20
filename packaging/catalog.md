@@ -1,14 +1,8 @@
 # SECONDED catalog
 
-Generated from a local offline API catalog capture; see ops/release/catalog/capture-provenance.json (historical capture catalog_sha256=9fd1e5238e17f95781d496439e78c242831a40962b78efb3afec911ae4841284 preserved; candidate manually revised). Prepared 0.4.3 metadata only; no signed or published 0.4.3 release.
+Generated from a local offline API catalog capture; see ops/release/catalog/capture-provenance.json (historical capture catalog_sha256=9fd1e5238e17f95781d496439e78c242831a40962b78efb3afec911ae4841284 preserved; candidate manually revised). Prepared 0.4.4 metadata only; this candidate is unsigned and unpublished.
 
-SECONDED exposes 12 paid verification checks and six MCP utility tools across five core job groups. It does not provide general transaction signing, trading execution, bridging, or automated portfolio actions. Payment signing for check fees is strictly bounded ($0.10 to $2.50) and never authorizes generic financial execution.
-
-Client 0.4.3 also lists `seconded_degen_check`, bringing discovery to 19 tools.
-Degen Check supports Pons V2 tokens on Robinhood Chain (`eip155:4663`), but its
-bundled status is `unavailable`; a visible tool does not establish enabled sales.
-The small-tier price is $0.10 when offered. A signed `models_disagree` answer can
-be charged; disagreement and stale results do not authorize an action.
+SECONDED exposes 13 paid verification products through 12 check tools and six MCP utility tools across five core job groups. It does not provide general transaction signing, trading execution, bridging, or automated portfolio actions. Payment signing for check fees is strictly bounded ($0.10 to $2.50) and never authorizes generic financial execution.
 
 ---
 
@@ -30,8 +24,8 @@ Pre-interaction analysis of smart contract tokens and official stock-token ident
 
 | Product & MCP Tool | Purpose & Benefit | Input & Subject Chains | Output & Action Labels | Tiers & Prices (USD) |
 | --- | --- | --- | --- | --- |
-| **Stock Token Check**<br>`seconded_stock_token_check`<br>(API: `stock_token_check`) | Verifies official Robinhood or Coinbase Base stock-token address against official issuer registries; returns optional signed parity (premium/discount bps vs reference USD price) and market calendar status. | **Input**: `network` (`eip155:4663` or `eip155:8453`), `address` (40-hex); optional `ticker` (e.g. `AAPLc` on Base, `AAPL` on Robinhood), optional `intended_price_usd`.<br>**Subject Chains**: Base (`eip155:8453`), Robinhood (`eip155:4663`). | `official_stock_token`: identity checked; not an endorsement.<br>`not_official_or_out_of_line`: STOP and show owner.<br>`NOT VERIFIED`: pause or ask human. | Small (≤8,192 B): **$0.10** ($0.15 on Robinhood)<br>Medium: *unavailable*<br>Large: *unavailable* |
-| **Token Check**<br>`seconded_token_check`<br>(API: `token_check`) | Evaluates contract bytecode, impersonation warnings, administrative/owner control, honeypot sell reverts via state-override simulation, and excessive sell taxes (>1% soft, >10% HARD). | **Input**: `network`, `address` (40-hex); optional `context` (≤2,000 characters).<br>**Subject Chains**: Base (`eip155:8453`), Arc (`eip155:5042`), Robinhood (`eip155:4663`), Base Sepolia (`eip155:84532`). | `no_checked_warning_signs`: proceed with normal checks; not an endorsement.<br>`warning_no_contract`: STOP.<br>`warning_impersonation`: STOP.<br>`warning_owner_control`: STOP.<br>`NOT VERIFIED`: pause. | Small (≤8,192 B): **$0.10** ($0.15 on Robinhood)<br>Medium: *unavailable*<br>Large: *unavailable* |
+| **Stock Token Check**<br>`seconded_asset_check` (`kind=stock_token`)<br>(API: `stock_token_check`) | Verifies official Robinhood or Coinbase Base stock-token address against official issuer registries; returns optional signed parity (premium/discount bps vs reference USD price) and market calendar status. | **Input**: `network` (`eip155:4663` or `eip155:8453`), `address` (40-hex); optional `ticker` (e.g. `AAPLc` on Base, `AAPL` on Robinhood), optional `intended_price_usd`.<br>**Subject Chains**: Base (`eip155:8453`), Robinhood (`eip155:4663`). | `official_stock_token`: identity checked; not an endorsement.<br>`not_official_or_out_of_line`: STOP and show owner.<br>`NOT VERIFIED`: pause or ask human. | Small (≤8,192 B): **$0.10** ($0.15 on Robinhood)<br>Medium: *unavailable*<br>Large: *unavailable* |
+| **Token Check**<br>`seconded_asset_check` (`kind=token`)<br>(API: `token_check`) | Evaluates contract bytecode, impersonation warnings, administrative/owner control, honeypot sell reverts via state-override simulation, and excessive sell taxes (>1% soft, >10% HARD). | **Input**: `network`, `address` (40-hex); optional `context` (≤2,000 characters).<br>**Subject Chains**: Base (`eip155:8453`), Arc (`eip155:5042`), Robinhood (`eip155:4663`), Base Sepolia (`eip155:84532`). | `no_checked_warning_signs`: proceed with normal checks; not an endorsement.<br>`warning_no_contract`: STOP.<br>`warning_impersonation`: STOP.<br>`warning_owner_control`: STOP.<br>`NOT VERIFIED`: pause. | Small (≤8,192 B): **$0.10** ($0.15 on Robinhood)<br>Medium: *unavailable*<br>Large: *unavailable* |
 
 ### 3. Counterparties
 Screening of on-chain agent identities and counterparty addresses before transacting.
@@ -60,7 +54,7 @@ Local MCP utilities and public API metadata routes for spending management and r
 | `seconded_get_limits`<br>(local MCP) | Inspects active per-check, hourly, daily, and outstanding USD spending limits, along with safety switch states. | None | Free (local) |
 | `seconded_set_limits`<br>(local MCP) | Allows chat to tighten spending limits, enable safety switches, or freeze authorizations. (Raising limits, unfreezing, or disabling switches requires owner terminal). | Policy patch JSON (e.g. `{"daily_usd": 20}`) | Free (local) |
 | `seconded_products`<br>(GET `/v1/products`) | Returns the complete product guide, input schemas, prices, tiers, and enabled payment networks. | None | Free (public API) |
-| `seconded_quote`<br>(POST `/v1/quote`) | Previews tier and price for a check input without payment authorization or challenge creation. *(Preview does not guarantee input acceptance).* | `product`, `input` | Free (public API) |
+| `seconded_quote`<br>(POST `/v1/quote`) | Previews tier and price for a check input without payment authorization or challenge creation. *(Preview does not guarantee input acceptance).* | `product`, `input`, optional payment `network` | Free (public API) |
 | `seconded_receipt`<br>(GET `/v1/checks/{check_id}` / POST `/v1/x402/checks`) | Recovers checks using the existing local handle in `check_id` without duplicate purchases; the handle can differ from the signed server admission ID. Standard x402 door replays the exact retained body and payment signature via POST; legacy original door and archives use GET with read-only ownership proof. Polling pending states retains the recovery lock until verified resolution. | `check_id` (optional; lists recent if omitted) | Free (public API / local ledger) |
 
 ---
@@ -119,7 +113,7 @@ Checks are paid in stablecoins on designated payment rails, completely independe
 - **Limits**: Oracle accuracy and independent feed age remain unknown. Evidence freshness is bounded to 120 seconds at the signed outcome time. An at-block relationship is conditional on the protocol oracle, not future safety, financial advice, or authority to take a loan action.
 - **Fees & Wallets**: Subject chain and fee rail are independent. Existing Base USDC, Arc USDC, and Robinhood USDG fee rails and client check wallet policy remain unchanged; no new custody, key migration, or wallet provisioning.
 - **Price**: Small $0.25 on all three existing fee rails; no Medium/Large tier.
-- **Source Contract**: See [`LENDING` catalog/input schema](../server/checks/products.py), [`LendingInput` / `LendingObservations` / `Answer` OpenAPI components](../docs/openapi.json), and [`LendingCheck` evidence validation](../server/checks/lending_check.py). These are candidate source contracts. Keep published 0.3.2 install examples until 0.4.0 publication; do not execute paid examples before the release gates pass.
+- **Source Contract**: See [`LENDING` catalog/input schema](../server/checks/products.py), [`LendingInput` / `LendingObservations` / `Answer` OpenAPI components](../docs/openapi.json), and [`LendingCheck` evidence validation](../server/checks/lending_check.py). These are candidate source contracts. Use only a reviewed published version for installation; do not execute paid examples before the release gates pass.
 
 <!-- qualified040:start -->
 ## Qualified 0.4.0 checks
@@ -136,3 +130,13 @@ Vault and Private Receive remain in testing and cannot be purchased.
 
 Prepared source and metadata only; this generation does not deploy or publish.
 <!-- qualified040:end -->
+
+## Degen Check and discovery in 0.4.4
+
+The bundled offline snapshot labels Degen available; a quote or check evaluates current server availability. Discovery has 18 MCP tools: 12 check tools and six utilities for 13 raw products. Asset Check selects Token Check or Stock Token Check using `input.kind=token|stock_token`; the quote product remains `token_check` or `stock_token_check`, without `kind`.
+
+| Product & MCP Tool | Scope | Tiers & Prices (USD) |
+| --- | --- | --- |
+| **Degen Check**<br>`seconded_degen_check`<br>(API: `degen_check`) | Pons V2 tokens on Robinhood Chain only. Read signed facts, both opinions and freshness; disagreement and stale results do not authorize an action. | Small: **$0.10** |
+
+Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen costs $0.10 for a saved signed answer, including `models_disagree`. No answer means no charge. Quote payment networks are `base`, `arc`, `robinhood`, `base_sepolia`, `arc_testnet` and `robinhood_testnet`; omission uses the default. The payment network is separate from the subject network in `input`.
