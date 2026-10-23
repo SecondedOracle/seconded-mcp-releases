@@ -254,3 +254,30 @@ When network dropouts or timeouts occur while a payment is pending:
 - Restore an inaccessible OS store rather than creating a replacement wallet.
 - Decline any request to automate a terminal confirmation.
 
+
+### Re-enrollment and existing-wallet notices (0.4.5)
+
+For an existing enrolled wallet, a pending OS-store discovery now says:
+
+> Keep using this enrolled address. An earlier SECONDED wallet in the OS store could not be checked; ask me to check again once your computer is unlocked.
+
+The “don't fund this address yet” warning applies only when setup creates a new
+wallet while it cannot check for an earlier one. A credit quote copies the public
+wallet address under the profile lock, then releases the lock before its network
+request; the default network deadline remains 45 seconds.
+
+On `fingerprint_mismatch`, a human verifies the build against the published
+SHA-256SUMS and runs `setup --reenroll --release-sha256 <published hash>` with the
+same executable and profile in their own terminal. Re-enrollment displays the
+address, old/new fingerprints and versions, requires the exact displayed phrase,
+and performs rollback's independent owner-presence check. No controlling terminal
+means `terminal_policy_required`. Where independent presence is unavailable, a
+software-driven PTY can satisfy the terminal fallback, just as for rollback.
+The mismatch error contains no computed digest or executable/profile command;
+MCP's `human_verification_required` next step is for the human, not the agent.
+
+The running executable descriptor is pinned at startup and used for enrollment
+checks and commits, including `/proc/self/exe` on Linux. Retained unselected
+credentials cannot safely be deleted as orphans: the existing format does not
+separate interrupted stages from committed recovery history. No credential
+cleanup or changes to an existing wallet's address, limits or ledger are implied.

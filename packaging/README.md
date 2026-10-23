@@ -35,3 +35,28 @@ Pricing and payment networks are generated in [catalog.md](catalog.md).
 Installation is free and performs no check. Fund a dedicated wallet with only a few dollars.
 Automatic fallback stores a private key file UNENCRYPTED. Default spending is $25/day;
 chat only tightens or freezes. Owner terminal confirmation governs raises, unfreezes and switches.
+
+## Client 0.4.5 candidate
+
+This local candidate adds burn-credit buying, quoting and redemption to the MCP
+catalog (21 tools). Repeat the same `pack_id` and arguments to recover a buy;
+`seconded_receipt` recovers a check, and authenticated credit status is queried
+when an older server omits a balance snapshot. There is no separate credit-status
+MCP tool. Use `payment_preference: "seconded_discount"`, `network: "robinhood"`
+and `agent_id` to opt in.
+
+Credit-paid check results and CLI `recover` output show the dollar balance
+**after this check**, its observation time, and `credit_balance_trust: "unsigned"`.
+The spendable balance excludes reserved, expired and frozen credits. It is a
+transport-authenticated account snapshot outside the signed receipt; it cannot
+prove a balance later or change signed billing. Older replies without the new
+fields remain supported; a separate status lookup is labelled accordingly.
+
+Saved receipt export is available through `export-receipt CHECK_ID` and MCP
+`seconded_receipt` with `export: true`. Export preserves only the original signed
+receipt. The release carries forward 0.4.4 Asset Check, quote-network selection,
+billing guidance, unsigned service diagnostics and certified-nonpayment recovery
+fixes, plus the receipt-export and paid-run regression fixes.
+
+Version 0.4.5 is prepared locally only. Publication, publisher signatures and paid
+candidate end-to-end qualification remain separate steps.

@@ -1,16 +1,16 @@
 {
-  "bundle": "assets/seconded-mcp_0.4.4.mcpb",
+  "bundle": "assets/seconded-mcp_0.4.5.mcpb",
   "configSchema": {
     "additionalProperties": false,
     "properties": {},
     "type": "object"
   },
   "description": "The oracle for agents. Verify trades, tokens and messages before your agent acts.",
-  "fileSha256": "045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa",
-  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and six utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
-  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and six utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
+  "fileSha256": "f098d424b6f1d30db1733debe870b08ad14b6c35be5234155e3871ce6c0bbe8d",
+  "longDescription": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and nine utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
+  "operationalNotes": "SECONDED is the oracle for agents. Before your agent acts, it checks the real cost, the real contract and the real risk, read live and confirmed by two rival AIs, one from OpenAI and one from Anthropic. Every answer comes with a signed receipt. Standard checks charge only after agreement and a saved answer; a disagreement is signed and free. Degen Check costs $0.10 for a saved signed answer, including a signed models_disagree answer.\n\n13 available checks: Trade Check ($0.25 small, $1.50 medium); Stock Token Check ($0.10 ($0.15 on Robinhood) small); Token Check ($0.10 ($0.15 on Robinhood) small); Agent Registry Check ($0.25 small); Address Screening Check ($0.10 ($0.15 on Robinhood) small); Cross-Chain Compare ($0.10 ($0.15 on Robinhood) small); Scam Check ($0.10 ($0.15 on Robinhood) small, $1.50 medium, $2.50 large); Lending Check ($0.25 small); Agent Work Payout Check ($0.25 small); x402 Payment Check ($0.10 ($0.15 on Robinhood) small); Shielded Route Check ($0.25 small); Bridge Route Check ($0.10 ($0.15 on Robinhood) small); Degen Check ($0.10 small). Payment networks: Base USDC (eip155:8453); Arc USDC (eip155:5042); Robinhood Chain USDG (eip155:4663). Base mainnet is the default; other networks require explicit selection. Payments use POST /v1/x402/checks; /v1/checks is operator rollback only until all three mainnet canaries pass. New wallets: $2.50 per check, $25/day. Chat may only tighten or freeze; raising limits, unfreezing and switching wallets require the owner terminal. Touch ID or an installed administrator key adds independent owner approval. Without either, six-character TTY confirmation does not stop agents with shell access. Legacy nil or above-$25/day policies freeze pending owner review. Automatic private-file fallback is UNENCRYPTED; fund a dedicated wallet with only a few dollars. Native binaries have no Apple notarization or Windows Authenticode; verify the SSH-signed SHA-256 manifest. Availability is a bundled offline snapshot, not a live probe; a quote checks current availability. The 13 products use 12 check tools and nine utilities: Asset Check selects token or stock_token. seconded_quote accepts base, arc, robinhood and their supported testnet selectors as its payment network.",
   "qualifiedName": "seconded/seconded-mcp",
-  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb",
+  "releaseUrl": "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_0.4.5.mcpb",
   "tools": [
     {
       "annotations": {
@@ -193,13 +193,17 @@
         "openWorldHint": true,
         "readOnlyHint": true
       },
-      "description": "Recover a check or recent checks by fetching status only. With no check_id, lists the 20 newest checks and any older check still awaiting its receipt, newest first. A result's verification holds the receipt's signed findings and coverage. Never creates a new payment authorization; standard recovery may re-post the identical credential, while legacy recovery signs a read-only ownership proof. After any check error or timeout, call this before checking again. The answer wait can end while payment is pending: continue receipt-only recovery separately until final payment, certified nonpayment, or manual review. Certified nonpayment says not charged and permits retrying the check.",
+      "description": "Recover a check or recent checks by fetching status only. With no check_id, lists the 20 newest checks and any older check still awaiting its receipt, newest first. A result's verification holds the receipt's signed findings and coverage. Never creates a new payment authorization; standard recovery may re-post the identical credential, while legacy recovery signs a read-only ownership proof. After any check error or timeout, call this before checking again. The answer wait can end while payment is pending: continue receipt-only recovery separately until final payment, certified nonpayment, or manual review. Certified nonpayment says not charged and permits retrying the check. With export=true and check_id, instead export only the locally saved signed envelope, sig and key_id for independent verification; no recovery or network call. Signed billing includes public wallet addresses and is not independent chain-finality proof.",
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
           "check_id": {
             "pattern": "^[0-9a-f]{32}$",
             "type": "string"
+          },
+          "export": {
+            "description": "Export the saved signed receipt locally; requires check_id.",
+            "type": "boolean"
           }
         },
         "type": "object"
@@ -239,6 +243,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "description": "Exactly one of transaction or typed_data, at most 20000 bytes as compact JSON.",
@@ -458,6 +466,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -482,6 +497,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "oneOf": [
               {
@@ -578,6 +597,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -602,6 +628,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -662,6 +692,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -686,6 +723,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -724,6 +765,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -748,6 +796,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -839,6 +891,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -863,6 +922,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -909,6 +972,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -933,6 +1003,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -975,6 +1049,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -999,6 +1080,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -1056,6 +1141,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -1080,6 +1172,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "description": "One input object with network and accepts; preserve supplied chosen_index and budget. Never input.input. Preserve offer fields and values. Client derives signing_context from top-level signing; never invent it.",
@@ -1464,6 +1560,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "signing": {
             "additionalProperties": false,
             "properties": {
@@ -1510,6 +1613,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -1568,6 +1675,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -1592,6 +1706,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -1748,6 +1866,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -1772,6 +1897,10 @@
       "inputSchema": {
         "additionalProperties": false,
         "properties": {
+          "agent_id": {
+            "minLength": 1,
+            "type": "string"
+          },
           "input": {
             "additionalProperties": false,
             "properties": {
@@ -1808,6 +1937,13 @@
             ],
             "type": "string"
           },
+          "payment_preference": {
+            "description": "Opt in to prepaid burn credits, falling back to x402 if insufficient. Requires network robinhood and agent_id.",
+            "enum": [
+              "seconded_discount"
+            ],
+            "type": "string"
+          },
           "wait_seconds": {
             "maximum": 25,
             "minimum": 0,
@@ -1820,8 +1956,131 @@
         "type": "object"
       },
       "name": "seconded_degen_check"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": false
+      },
+      "description": "Buy a burn-credit pack through the pinned Robinhood USDG to native ETH to SECONDED route, burn only its swap output, then redeem. Sends up to four initial chain transactions; safe requotes may renew approval within the original total gas cap. Face value $5\u2013$10; USDG input capped at $10 per pack. Supply explicit USDG, slippage and gas caps. Repeat identical arguments and pack_id while pending; safe unbroadcast stages requote after expiry. Optional recovery_action=requote refreshes a safe stage; recovery_action=abandon closes it and retains any swapped tokens. Uncertain transactions cannot be abandoned; never choose a new ID to retry.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "face_usd_micros": {
+            "maximum": 10000000,
+            "minimum": 5000000,
+            "type": "integer"
+          },
+          "gas_limit": {
+            "maximum": 2000000,
+            "minimum": 21000,
+            "type": "integer"
+          },
+          "input_usdg_micros": {
+            "maximum": 10000000,
+            "minimum": 4000000,
+            "type": "integer"
+          },
+          "max_fee_per_gas_wei": {
+            "type": "string"
+          },
+          "max_priority_fee_per_gas_wei": {
+            "type": "string"
+          },
+          "max_total_gas_wei": {
+            "type": "string"
+          },
+          "pack_id": {
+            "pattern": "^[0-9a-f]{32}$",
+            "type": "string"
+          },
+          "recovery_action": {
+            "enum": [
+              "requote",
+              "abandon"
+            ],
+            "type": "string"
+          },
+          "slippage_bps": {
+            "maximum": 1000,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pack_id",
+          "agent_id",
+          "face_usd_micros",
+          "input_usdg_micros",
+          "slippage_bps",
+          "gas_limit",
+          "max_fee_per_gas_wei",
+          "max_priority_fee_per_gas_wei",
+          "max_total_gas_wei"
+        ],
+        "type": "object"
+      },
+      "name": "seconded_credits_buy"
+    },
+    {
+      "annotations": {
+        "openWorldHint": true,
+        "readOnlyHint": true
+      },
+      "description": "Get a fresh quote for a SECONDED burn-credit pack on Robinhood. Minimum face value $5; quotes expire in 300 seconds. Does not buy or burn tokens.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_id": {
+            "type": "string"
+          },
+          "face_usd_micros": {
+            "maximum": 10000000,
+            "minimum": 5000000,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "agent_id",
+          "face_usd_micros"
+        ],
+        "type": "object"
+      },
+      "name": "seconded_credits_quote"
+    },
+    {
+      "annotations": {
+        "idempotentHint": true,
+        "openWorldHint": true,
+        "readOnlyHint": false
+      },
+      "description": "Redeem an existing finalized burn transaction using its fresh quote. Signs a BurnRedeem proof with the check wallet; sends no chain transaction. Returns the credit lot and remaining face value.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "quote": {
+            "description": "The entire unchanged quote object returned by seconded_credits_quote.",
+            "type": "object"
+          },
+          "tx_hash": {
+            "pattern": "^0x[0-9a-fA-F]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tx_hash",
+          "quote"
+        ],
+        "type": "object"
+      },
+      "name": "seconded_credits_redeem"
     }
   ],
-  "version": "0.4.4",
+  "version": "0.4.5",
   "visibility": "public"
 }

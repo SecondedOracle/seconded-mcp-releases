@@ -1,37 +1,37 @@
 class SecondedMcp < Formula
   desc "SECONDED local stdio MCP client"
   homepage "https://secondedoracle.xyz"
-  version "0.4.4"
+  version "0.4.5"
 
   on_macos do
     on_arm do
-      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_darwin_arm64", using: :nounzip
-      sha256 "e9a0e42155bc3b37a631349e2603e99138efeccd1a00959e54cb524e2ba35824"
+      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_darwin_arm64", using: :nounzip
+      sha256 "e6484cd221f71b4a70f449ae70a653d16aa71be4f5badb3d668568a60f681427"
     end
     on_intel do
-      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_darwin_amd64", using: :nounzip
-      sha256 "d6049ea4d852023f8df59a6c8650f7cdcc8533ef658a3e5c3c2181b783c84f52"
+      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_darwin_amd64", using: :nounzip
+      sha256 "d68d0070e37341c259095b120212f06d0399a319188bc888c9572dc84bba43d2"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_linux_arm64", using: :nounzip
-      sha256 "8586af7b9b8ec8ecc9b042794898f6a8eb0e990ae4e618d4330b03026a5fe267"
+      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_linux_arm64", using: :nounzip
+      sha256 "b07fd35bff9bf4b6943a838fc890071f5cac52ef08b48f66c0025335dbe0063b"
     end
     on_intel do
-      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_linux_amd64", using: :nounzip
-      sha256 "29f55d3ad3c708b253fca512f70e1e2274abe7fb066d5f496719c73eaccb6b41"
+      url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_linux_amd64", using: :nounzip
+      sha256 "c6bb4e6a6e2fac7f54bd18ea3a41c1938a418d62ae0011ad492ebf650bea2f2b"
     end
   end
 
   depends_on "openssh"
   resource "release-manifest" do
-    url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/SHA-256SUMS", using: :nounzip
-    sha256 "cce5dfd5041e01455bb597787232e891035c4592a75616ac885b5fb4b93c9587"
+    url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/SHA-256SUMS", using: :nounzip
+    sha256 "ef7aef7d9130389f658da3975a2c7d9cad1fc1cb4d0a1c424fbff66e38e05e93"
   end
   resource "release-signature" do
-    url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/SHA-256SUMS.sig", using: :nounzip
-    sha256 "7ff8737fe7ae5a38d219226c17b44433506cfafcea03503706f5ed5ad612bbf4"
+    url "https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/SHA-256SUMS.sig", using: :nounzip
+    sha256 "7d12d17fc535726936833c850fed71ca7fe3fe667b400e6fc83c13690cc4b14f"
   end
 
   def install
