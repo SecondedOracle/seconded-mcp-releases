@@ -1,4 +1,4 @@
-name: Publish MCP Registry 0.4.4
+name: Publish MCP Registry 0.4.5
 
 'on':
   push:
@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: mcp-registry-0.4.4
+  group: mcp-registry-0.4.5
   cancel-in-progress: false
 
 jobs:
@@ -21,7 +21,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      EXPECTED_MANIFEST_SHA256: 2a28d320ccd993eed1e029634525b1fa2cb92330c82b085712a89b3775adb3c0
+      EXPECTED_PUBLIC_BASE: 80eca7a5f8740164e48e6baa56e385b2638930de
+      EXPECTED_MANIFEST_SHA256: 403df6f1b4b92021d3e2b158c230996f4ecfac5ab6f76ccecc1ee3c63bb1e681
     steps:
       - name: Require the organization bot on main
         env:
@@ -60,17 +61,28 @@ jobs:
           import re
           import subprocess
 
-          if os.environ["EVENT"] == "push":
-              before = os.environ["BEFORE"]
-              if not re.fullmatch(r"[0-9a-f]{40}", before) or before == "0" * 40:
-                  raise SystemExit("A push must have an existing main parent")
-              changed = subprocess.check_output([
-                  "git", "diff", "--name-only", "-z", before,
-                  os.environ["GITHUB_SHA"], "--",
-              ]).split(b"\0")
-              allowed = {b".github/workflows/publish-registry.yml", b"registry/server.json"}
-              if set(changed) - {b""} - allowed:
-                  raise SystemExit("Push changes files outside the approved publish inputs")
+          base = os.environ["EXPECTED_PUBLIC_BASE"]
+          head = os.environ["GITHUB_SHA"]
+          if not re.fullmatch(r"[0-9a-f]{40}", head):
+              raise SystemExit("Invalid triggering commit")
+          parents = subprocess.check_output([
+              "git", "rev-list", "--parents", "-n", "1", head,
+          ]).decode().split()
+          if parents != [head, base]:
+              raise SystemExit("Triggering commit must have the reviewed public base as its only parent")
+          public_head = subprocess.check_output([
+              "git", "rev-parse", "refs/remotes/origin/main",
+          ]).decode().strip()
+          if public_head != head:
+              raise SystemExit("Public main differs from the triggering commit; inspect before retrying")
+          if os.environ["EVENT"] == "push" and os.environ["BEFORE"] != base:
+              raise SystemExit("Push must start from the reviewed public base")
+          changed = subprocess.check_output([
+              "git", "diff", "--name-only", "-z", base, head, "--",
+          ]).split(b"\0")
+          allowed = {b".github/workflows/publish-registry.yml", b"registry/server.json"}
+          if set(changed) - {b""} != allowed:
+              raise SystemExit("Commit must change exactly the two approved publish inputs")
           PY
           cmp registry/server.json <(git show "$GITHUB_SHA:registry/server.json")
           printf '%s  registry/server.json\n' "$EXPECTED_MANIFEST_SHA256" | sha256sum -c -
@@ -81,8 +93,8 @@ jobs:
           set -euo pipefail
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.npmjs.org/@seconded%2fmcp/0.4.4 \
-            -o "$RUNNER_TEMP/seconded-npm-0.4.4.json"
+            https://registry.npmjs.org/@seconded%2fmcp/0.4.5 \
+            -o "$RUNNER_TEMP/seconded-npm-0.4.5.json"
           python3 - <<'PY'
           import hashlib
           import json
@@ -97,18 +109,18 @@ jobs:
           package = {
               "registryType": "mcpb",
               "identifier": "https://github.com/SecondedOracle/seconded-mcp-releases/"
-                            "releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb",
-              "fileSha256": "045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa",
+                            "releases/download/v0.4.5/seconded-mcp_0.4.5.mcpb",
+              "fileSha256": "f098d424b6f1d30db1733debe870b08ad14b6c35be5234155e3871ce6c0bbe8d",
               "transport": {"type": "stdio"},
           }
-          if server.get("name") != name or server.get("version") != "0.4.4":
+          if server.get("name") != name or server.get("version") != "0.4.5":
               raise SystemExit("Registry name/version mismatch")
           # The approved committed JSON is MCPB-only. Never add npm or rewrite it here.
           if server.get("packages") != [package]:
               raise SystemExit("MCPB URL/digest/transport or package inventory mismatch")
           npm = json.loads((Path(os.environ["RUNNER_TEMP"]) /
-                            "seconded-npm-0.4.4.json").read_bytes())
-          expected = {"name": "@seconded/mcp", "version": "0.4.4", "mcpName": name}
+                            "seconded-npm-0.4.5.json").read_bytes())
+          expected = {"name": "@seconded/mcp", "version": "0.4.5", "mcpName": name}
           if any(npm.get(key) != value for key, value in expected.items()):
               raise SystemExit("Published npm identifier/version/mcpName mismatch")
           PY
@@ -117,14 +129,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          install -d "$RUNNER_TEMP/registry-publisher-0.4.4"
-          cd "$RUNNER_TEMP/registry-publisher-0.4.4"
+          install -d "$RUNNER_TEMP/registry-publisher-0.4.5"
+          cd "$RUNNER_TEMP/registry-publisher-0.4.5"
           curl -q --fail --silent --show-error --location --proto '=https' \
             --proto-redir '=https' --connect-timeout 10 --max-time 120 \
-            https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.4/seconded-mcp_0.4.4.mcpb \
-            -o seconded-mcp_0.4.4.mcpb
-          printf '%s  seconded-mcp_0.4.4.mcpb\n' \
-            045662d72d8c7e30db58ccdb2ca85186293d206e00d52841e21813b62be278aa | sha256sum -c -
+            https://github.com/SecondedOracle/seconded-mcp-releases/releases/download/v0.4.5/seconded-mcp_0.4.5.mcpb \
+            -o seconded-mcp_0.4.5.mcpb
+          printf '%s  seconded-mcp_0.4.5.mcpb\n' \
+            f098d424b6f1d30db1733debe870b08ad14b6c35be5234155e3871ce6c0bbe8d | sha256sum -c -
           curl -q --fail --silent --show-error --location --proto '=https' \
             --proto-redir '=https' --connect-timeout 10 --max-time 120 \
             https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz \
@@ -132,7 +144,7 @@ jobs:
           printf '%s  publisher.tar.gz\n' \
             a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc | sha256sum -c -
           tar -xzf publisher.tar.gz mcp-publisher
-          printf '%s\n' "$RUNNER_TEMP/registry-publisher-0.4.4" >> "$GITHUB_PATH"
+          printf '%s\n' "$RUNNER_TEMP/registry-publisher-0.4.5" >> "$GITHUB_PATH"
 
       - name: Validate and require an unpublished version
         shell: bash
@@ -145,9 +157,9 @@ jobs:
             jq -e '.server.name == "io.github.SecondedOracle/seconded-mcp" and .server.version == "0.3.0"'
           code=$(curl -q --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 --output /dev/null --write-out '%{http_code}' \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.4)
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.5)
           if [ "$code" != 404 ]; then
-            echo "Expected absent 0.4.4 (404), got $code; inspect the listing before retrying." >&2
+            echo "Expected absent 0.4.5 (404), got $code; inspect the listing before retrying." >&2
             exit 1
           fi
 
@@ -166,7 +178,7 @@ jobs:
           set -euo pipefail
           curl -q --fail --silent --show-error --proto '=https' \
             --connect-timeout 10 --max-time 60 \
-            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.4 |
+            https://registry.modelcontextprotocol.io/v0.1/servers/io.github.SecondedOracle%2Fseconded-mcp/versions/0.4.5 |
             jq -e --slurpfile expected registry/server.json \
               '.server.name == $expected[0].name and .server.version == $expected[0].version and
                .server.packages == $expected[0].packages and
